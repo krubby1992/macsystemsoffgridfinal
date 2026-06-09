@@ -2,7 +2,7 @@
   --blue: #284fa4;
   --blue-dark: #183b8d;
   --black: #1f1f1f;
-  --white: #fff;
+  --white: #fdfdfd;
   --silver: #c8c8c8;
   --text: #f7f7f7;
 }
@@ -19,7 +19,7 @@ body {
   margin: 0;
   background: var(--black);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   line-height: 1.55
 }
 
@@ -41,8 +41,16 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 18px clamp(18px, 5vw, 72px);
-  background: linear-gradient(90deg, var(--blue-dark), var(--blue));
-  color: white
+  background: var(--blue-dark);
+
+  color: white a.brand {
+    position: relative;
+  }
+
+  a.brand::before {
+    content: "";
+    background-image: url('images/MAC\ SYSTEMS\ logo.png');
+  }
 }
 
 .brand,
@@ -51,8 +59,20 @@ h1,
 h2,
 h3 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 900;
-  letter-spacing: -.03em
+  font-weight: 500;
+  /* letter-spacing: -.03em */
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin: 0 0 28px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .brand {
@@ -101,6 +121,11 @@ h3 {
   color: white
 }
 
+.section-light {
+  background: var(--white);
+  color: var(--black);
+}
+
 .eyebrow {
   margin: 0 0 8px;
   text-transform: uppercase;
@@ -111,7 +136,7 @@ h3 {
 .hero {
   position: relative;
   min-height: 560px;
-  background: var(--blue);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(255, 255, 255, 0) 100%);
   overflow: hidden
 }
 
@@ -119,13 +144,15 @@ h3 {
   width: 100%;
   height: 560px;
   object-fit: cover;
-  object-position: center 45%;
-  filter: brightness(.75)
+  object-position: center 25%;
+  /* filter: brightness(.95); */
+  position: relative;
+  z-index: -1;
 }
 
 .hero-copy {
   position: absolute;
-  left: clamp(22px, 10vw, 160px);
+  left: clamp(22px, 10vw, 400px);
   top: 50%;
   transform: translateY(-50%);
   max-width: 560px
@@ -133,130 +160,167 @@ h3 {
 
 .hero h1 {
   margin: 0 0 16px;
-  font-size: clamp(3.4rem, 7vw, 7.2rem);
+  font-size: clamp(3.4rem, 5vw, 6.2rem);
   line-height: .9;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: white;
   text-shadow: 0 3px 14px rgba(0, 0, 0, .2)
 }
 
 .hero p:not(.eyebrow) {
   font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 700;
+  font-weight: 300;
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   max-width: 430px;
   margin: 0 0 28px
 }
 
-.intro {
-  display: grid;
-  grid-template-columns: minmax(280px, 440px) minmax(360px, 720px);
-  gap: clamp(28px, 5vw, 72px);
-  align-items: center;
-  justify-content: center;
-  padding: clamp(52px, 7vw, 92px) clamp(22px, 6vw, 96px)
+section.intro {
+  padding: 60px 0;
+
+  .container {
+    display: flex;
+
+    .intro-image {
+      width: 50%;
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      padding-right: 30px;
+
+      img {
+        /* width: 100%; */
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    }
+
+    .intro-copy {
+      width: 50%;
+      padding-left: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      /* h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: .95;
+        margin: 0 0 28px
+      } */
+
+      p {
+        font-size: 1.06rem;
+        margin: 0 0 18px;
+        /* max-width: 760px */
+      }
+
+      .button {
+        margin-top: 18px
+      }
+    }
+  }
 }
 
-.intro-image img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover
+section.services {
+  padding: 60px 0;
+
+  .container {
+    .section-heading {
+      margin: 0 auto 32px;
+      text-align: left
+    }
+
+    /* .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: .95;
+      margin: 0
+    } */
+
+    .services {
+      padding: clamp(46px, 7vw, 82px) clamp(18px, 3vw, 40px)
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      /* max-width: 1320px; */
+      /* margin: 0 auto 42px */
+    }
+
+    .service-card {
+      background: white;
+      color: #111;
+      /* min-height: 310px; */
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-radius: 5px;
+    }
+
+    .service-card .icon {
+      width: 72px;
+      height: 72px;
+      /* margin-bottom: auto; */
+      color: #050505
+    }
+
+    .service-card h3 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .service-card p {
+      font-size: 1.02rem;
+      margin: 0
+    }
+  }
 }
 
-.intro h2 {
-  font-size: clamp(2rem, 4vw, 3.8rem);
-  line-height: .95;
-  margin: 0 0 28px
+section.infrastructure {
+  padding: 60px 0;
+
+  .container {
+    display: flex;
+
+    .infra-copy {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-right: 30px;
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: .95;
+        margin: 0 0 28px
+      }
+
+      p {
+        font-size: 1.06rem;
+        margin: 0 0 18px;
+      }
+    }
+
+    .infra-image {
+      width: 50%;
+      padding-left: 30px;
+
+      img {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 
-.intro p {
-  font-size: 1.06rem;
-  margin: 0 0 18px;
-  max-width: 760px
-}
-
-.intro .button {
-  margin-top: 18px
-}
-
-.section-heading {
-  max-width: 900px;
-  margin: 0 auto 32px;
-  padding: 0 22px;
-  text-align: left
-}
-
-.section-heading h2 {
-  font-size: clamp(2rem, 4vw, 4.4rem);
-  line-height: .95;
-  margin: 0
-}
-
-.services {
-  padding: clamp(46px, 7vw, 82px) clamp(18px, 3vw, 40px)
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  max-width: 1320px;
-  margin: 0 auto 42px
-}
-
-.service-card {
-  background: white;
-  color: #111;
-  min-height: 310px;
-  padding: 34px 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end
-}
-
-.service-card .icon {
-  width: 72px;
-  height: 72px;
-  margin-bottom: auto;
-  color: #050505
-}
-
-.service-card h3 {
-  font-size: 2rem;
-  margin: 42px 0 8px
-}
-
-.service-card p {
-  font-size: 1.02rem;
-  margin: 0
-}
-
-.services>.button {
-  margin-left: calc((100% - min(1320px, calc(100% - 0px)))/2)
-}
-
-.infrastructure {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 50px;
-  align-items: center;
-  padding: clamp(58px, 7vw, 94px) clamp(22px, 5vw, 72px)
-}
-
-.infra-copy p {
-  font-size: clamp(1.12rem, 2vw, 1.55rem);
-  max-width: 700px;
-  color: #e8e8e8
-}
-
-.infra-image img {
-  width: 100%;
-  max-height: 620px;
-  object-fit: cover
-}
-
-.gallery {
-  padding: clamp(52px, 7vw, 88px) clamp(22px, 5vw, 72px)
+section.gallery {
+  padding: 60px 0;
 }
 
 .gallery-grid {
@@ -268,12 +332,37 @@ h3 {
 .gallery-grid img {
   width: 100%;
   height: 360px;
-  object-fit: cover
+  object-fit: cover;
+  border-radius: 5px;
 }
 
-.contact {
+section.contact {
   text-align: center;
-  padding: clamp(70px, 9vw, 120px) 22px
+  position: relative;
+
+  .overlay {
+    padding: 60px 0;
+    /* background-color: #284fa495; */
+    z-index: 2;
+    position: relative;
+  }
+
+  a.button {
+    text-transform: none;
+  }
+}
+
+section.contact::after {
+  content: '';
+  background-image: url('images/MAC SYSTEMS logo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  right: 2%;
+  z-index: 1;
 }
 
 .contact h2 {
@@ -289,13 +378,17 @@ h3 {
 }
 
 .footer {
-  background: #151515;
-  color: #bbb;
+  background: var(--black);
+  color: var(--silver);
   text-align: center;
-  padding: 24px
+
+  padding: 24px p {
+    margin: 0;
+  }
 }
 
 @media(max-width:900px) {
+
   .nav a:not(.button) {
     display: none
   }
@@ -306,10 +399,49 @@ h3 {
     min-height: 560px
   }
 
+  section.intro {
+    padding: 20px 0;
+  }
+
+  section.intro .container {
+    flex-direction: column;
+
+    .intro-image {
+      width: 100%;
+      padding-right: 0;
+
+      img {
+        /* max-width: 300px; */
+        aspect-ratio: 2/1;
+        object-position: 50% 70%;
+        width: 100%;
+      }
+    }
+
+    .intro-copy {
+      width: 100%;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+  }
+
   .intro,
   .infrastructure {
     grid-template-columns: 1fr
   }
+
+  section.services {
+    padding: 20px 0;
+  }
+
+  section.services .container .service-grid {
+    grid-template-columns: 1fr 1fr
+  }
+
+  section.gallery {
+    padding: 20px 0;
+  }
+
 
   .service-grid,
   .gallery-grid {
@@ -318,6 +450,30 @@ h3 {
 
   .intro {
     padding-top: 46px
+  }
+
+  section.infrastructure {
+    padding: 20px 0;
+
+    .container {
+      flex-direction: column-reverse;
+
+      .infra-image {
+        width: 100%;
+        padding-left: 0;
+
+        img {
+          aspect-ratio: 2/1;
+          width: 100%;
+        }
+      }
+
+      .infra-copy {
+        width: 100%;
+        padding-right: 0;
+        margin-top: 20px;
+      }
+    }
   }
 
   .infrastructure {
@@ -330,6 +486,18 @@ h3 {
 
   .gallery-grid img {
     height: 300px
+  }
+
+  section.contact::after {
+    opacity: 50%;
+  }
+}
+
+@media(max-width:767px) {
+  section.contact::after {
+    opacity: 5%;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -351,10 +519,15 @@ h3 {
     gap: 0
   }
 
+  section.hero {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
   .hero,
   .hero img {
     height: 520px;
-    min-height: 520px
+    min-height: 520px;
+    object-position: right center;
   }
 
   .hero-copy {
@@ -366,13 +539,18 @@ h3 {
     font-size: 3.5rem
   }
 
-  .intro,
+  /* .intro,
   .services,
   .infrastructure,
   .gallery {
     padding-left: 18px;
     padding-right: 18px
+  } */
+
+  section.services .container .service-grid {
+    grid-template-columns: 1fr
   }
+
 
   .service-grid,
   .gallery-grid {
